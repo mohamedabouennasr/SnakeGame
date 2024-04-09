@@ -40,4 +40,11 @@ void moveSnake(char** ground, point* snake, point* food, int* score, int* lives)
         food->y = rand() % 60;
     }
     *(*(ground + food->x) + food->y) = '*';
+    if (snake->x == -1 || snake->x == 20 || snake->y < 0 || snake->y == 60) {
+        (*lives)--;
+        *(*(ground + snake->x) + snake->y) = ' ';
+        snake->x = 10;
+        snake->y = 30;
+        *(*(ground + snake->x) + snake->y) = '#';
+    }
 }
